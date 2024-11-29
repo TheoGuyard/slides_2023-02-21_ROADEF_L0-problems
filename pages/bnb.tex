@@ -1,0 +1,130 @@
+\begin{frame}{Branch-and-Bound}
+    \begin{tikzpicture}[remember picture,overlay,decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm},domain=0:4]
+        \node<+-> at (0,0) {};
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(current page.north)+(-3,-0.4\textheight)$) (node0) {$\nodeSymbIter{0}$};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=.35\textwidth] at ($(node0.north)+(0,0.6)$) (problem) {
+            \begin{blockthree}{}
+                \centering
+                \scriptsize
+                $\min_{\pv} \ \datafunc(\dic\pv) + \reg \norm{\pv}{0} + \regfunc(\pv)$
+            \end{blockthree}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node0.south)+(-1.5,-1)$) (node1) {$\nodeSymbIter{1}$};
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node0.south)+(+1.5,-1)$) (node2) {$\nodeSymbIter{2}$};
+            \draw [thick,->] (node0.south west) -- (node1.north east) node (arrow01) [midway] {};
+            \draw [thick,->] (node0.south east) -- (node2.north west) node (arrow02) [midway] {};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at (arrow01) [fill=white,draw=black,thick] {\scriptsize{$\pvi{1} = 0$}};
+            \node at (arrow02) [fill=white,draw=black,thick] {\scriptsize{$\pvi{1} \neq 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+> {
+            \node [text width=.2\textwidth] at ($(node1.south)+(0,-0.6)$) (subprob1) {
+                \begin{blockthree}{}
+                    \scriptsize
+                    $ \ \min_{\pv} \ \text{Same obj.}$ \\
+                    $ \ \ \text{s.t.} \ \ \pvi{1} = 0$
+                \end{blockthree}
+            };
+            \node [text width=.2\textwidth] at ($(node2.south)+(0,-0.6)$) (subprob2) {
+                \begin{blockthree}{}
+                    \scriptsize
+                    $ \ \min_{\pv} \ \text{Same obj.}$ \\
+                    $ \ \ \text{s.t.} \ \ \pvi{1} \neq 0$
+                \end{blockthree}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node1.south)+(-0.75,-1.25)$) (node3) {$\nodeSymbIter{3}$};
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node1.south)+(+0.75,-1.25)$) (node4) {$\nodeSymbIter{4}$};
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node2.south)+(-0.75,-1.25)$) (node5) {$\nodeSymbIter{5}$};
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node2.south)+(+0.75,-1.25)$) (node6) {$\nodeSymbIter{6}$};
+            \draw [thick,->] (node1.south west) -- (node3.north) node (arrow13) [fill=white,draw=black,midway] {\scriptsize{$\pvi{2} = 0$}};
+            \draw [thick,->] (node1.south east) -- (node4.north) node (arrow14) [fill=white,draw=black,midway] {\scriptsize{$\pvi{2} \neq 0$}};
+            \draw [thick,->] (node2.south west) -- (node5.north) node (arrow25) [fill=white,draw=black,midway] {\scriptsize{$\pvi{2} = 0$}};
+            \draw [thick,->,black] (node2.south east) -- (node6.north) node (arrow26) [fill=white,draw=black,midway] {\scriptsize{$\pvi{2} \neq 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(current page.north)+(3,-0.4\textheight)$) (node) {$\nodeSymbIter{k}$};
+            \draw [thick,->] ($(node.north)+(0,0.3)$) -- (node.north) {};
+            \node at ($(node.south)+(0,-0.4)$) (subprob) {\small\textbf{Subproblem}};
+            \node at ($(subprob.south)+(0,-0.1)$) (nphard) {\small{Still NP-hard}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nphard.south)+(-1.5,-0.75)$) (heur) {\small\textbf{Heuristic}};
+            \draw [thick,->,decorate] (nphard.south west) -- (heur.north) {};
+            \node at ($(heur.south)+(0,-0.1)$) (upperbound) {\small{Upper bound}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nphard.south)+(1.5,-0.75)$) (relax) {\small\textbf{Relaxation}};
+            \draw [thick,->,decorate] (nphard.south east) -- (relax.north) {};
+            \node at ($(relax.south)+(0,-0.1)$) (lowerbound) {\small{Lower bound}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nphard.south)+(0,-2)$)  (pruning) {\small\textbf{Pruning rule}};
+            \draw [thick,->,decorate] (upperbound.south) -- (pruning.north west) {};
+            \draw [thick,->,decorate] (lowerbound.south) -- (pruning.north east) {};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(pruning.south)+(0,-0.1)$) (rule) {\small{Node LB > Best UB}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(node4.south)+(0,-0.125)$) (bullet4) {$\bullet$};
+            \draw [thick] (node4.south) -- ($(bullet4.south)+(0,0.2)$);
+            \node at ($(node5.south)+(0,-0.125)$) (bullet5) {$\bullet$};
+            \draw [thick] (node5.south) -- ($(bullet5.south)+(0,0.2)$);
+            \node at ($(node6.south)+(0,-0.125)$) (bullet6) {$\bullet$};
+            \draw [thick] (node6.south) -- ($(bullet6.south)+(0,0.2)$);
+        }
+        \onslide<+-> {
+            \draw [thick,->] (node3.south west) -- ($(node3.south west)+(-0.1,-0.2)$);
+            \draw [thick,->] (node3.south east) -- ($(node3.south east)+(0.1,-0.2)$);
+        }
+    \end{tikzpicture}
+\end{frame}

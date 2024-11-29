@@ -1,0 +1,114 @@
+\begin{frame}{Variable fixing}
+    \begin{tikzpicture}[remember picture,overlay,decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm},domain=0:4]
+        \node at ($(current page.north)+(-4.7,-8.7)$) (origin) {};
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(current page.north)+(0,-2)$) (node) {$\nodeSymbIter{k}$};
+            \draw [thick,->] ($(node.north)+(0,0.3)$) -- (node.north);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=0.3\textwidth] at ($(node.east)+(3,0.25)$) (objective) {
+                \small
+                \begin{blocksix}{}
+                    \centering
+                    \textbf{Identify an index $j$}
+                \end{blocksix}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,font=\small,dashed] at ($(node.south)+(1.25,-1)$) (node1) {$\nodeSymbIter{k}_{j}$};
+            \node at ($(node1.south)+(0,-0.125)$) (bullet) {$\bullet$};
+            \draw [thick] (node1.south) -- ($(bullet.south)+(0,0.2)$);
+            \draw [thick,->,dashed] (node.south east) -- (node1.north west) node (arrow01) [fill=white,draw=black,midway] {\scriptsize{$\pvi{j} \neq 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \draw[mLightBrown,ultra thick,->] (node.north west) .. controls ($(node.north)+(-2.5,1)$) and ($(node.south)+(-2.5,-1)$) .. (node.south west);
+            \node[draw=mLightBrown,thick,top color = white,bottom color = orange!25,font=\scriptsize,align=center,ultra thick] at ($(node.west)+(-1.5,0)$) (fix) {Fix $\pvi{j} = 0$};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node[align=center] at ($(origin)+(2.5,3.8)$) {\small\textbf{Relaxation resolution at} $\nodeSymbIter{k}$};
+            \draw[->,thick] ($(origin)+(-0.2,0)$) -- ($(origin)+(5,0)$) node[below left] {\scriptsize{iterations}};
+            \draw[->,thick] ($(origin)+(0,-0.2)$) -- ($(origin)+(0,4)$) node[above] {};
+            \node [text width=0.4\textwidth] at ($(current page.north)+(3.5,-6.5)$) (ingredients) {
+                \small
+                \begin{blocksix}{Ingredients}
+                \begin{itemize}[leftmargin=*,label=$\bullet$,nosep]
+                    \item<7-> Already-computed quantities
+                    \item<8-> Cost-free dual evaluation
+                    \item<10-> Dual link between nodes
+                    \item<14-> Can fix \textbf{multiple} variables
+                \end{itemize} 
+                \end{blocksix}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node[font=\scriptsize,align=center] at ($(origin)+(-0.8,3.3)$) (fix1) {\textcolor{blue!50}{Relax. obj.} \\ \textcolor{blue!50}{at node $N^k$}};
+            \begin{scope}[shift={(0.22,-2.2)},scale=0.5]
+                \draw [color=blue!50,domain=1:10,samples=200,variable=\x,thick] plot (\x,{5*(sin(20*\x r)/(10*\x^2))+exp(-0.8*\x+2)});
+            \end{scope}
+        }
+        %
+        %
+        %
+        \node<+-> at (0,0) {};
+        \node<+-> at (0,0) {};
+        %
+        %
+        %
+        \onslide<+-> {
+            \node[font=\scriptsize,align=center] at ($(origin)+(-0.8,0.3)$) (fix1) {\textcolor{blue!50}{Dual. obj.} \\ \textcolor{blue!50}{at node $N^k$}};
+            \begin{scope}[shift={(0.22,-2.2)},scale=0.5]
+                \draw [color=blue!50,domain=1:10,samples=200,variable=\x,thick] plot (\x,{-5*(sin(20*\x r)/(10*\x^2))-exp(-1.5*\x+2)});
+            \end{scope}
+        }
+        %
+        %
+        %
+        \node<+-> at (0,0) {};
+        %
+        %
+        %
+        \onslide<+-> {
+            \node[font=\scriptsize,align=center] at ($(origin)+(-0.8,1.15)$) {\textcolor{blue!50}{Dual obj.} \\ \textcolor{blue!50}{at node $N^k_{j}$}};
+            \begin{scope}[shift={(0.22,-2)},scale=0.5]
+                \draw [color=blue!50,domain=1:10,samples=200,variable=\x,thick,dashed] plot (\x,{-5*(sin(10*\x r)/(10*\x^2))-exp(-0.8*\x+2)+2});
+            \end{scope}
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(origin)+(-0.7,2.35)$) {\scriptsize\textcolor{red!50}{Best UB}};
+            \begin{scope}[shift={(0.22,-1.7)},scale=0.5]
+                \draw [domain=1:10,samples=200,variable=\x,thick,color=red!50] plot (\x,0.9);
+            \end{scope}
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \draw[dashed,thick] ($(origin)+(1.25,2.3)$) -- ($(origin)+(1.25,0)$) {};
+            \node at ($(origin)+(1.25,-0.25)$) {\scriptsize\textbf{Prune $N^k_{j}$}};
+        }
+        %
+        %
+        %
+        \node<+-> at (0,0) {};
+    \end{tikzpicture}
+\end{frame}

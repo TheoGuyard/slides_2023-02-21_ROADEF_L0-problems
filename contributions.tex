@@ -1,0 +1,145 @@
+\begin{frame}{Contributions}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node<+-> [text width=.45\textwidth] at ($(current page.north)+(0,-0.25\textheight)$) (problem) {
+            \begin{blockthree}{$\ell_0$-penalized problem}
+            \centering
+            $\min_{\pv} \ \datafunc(\dic\pv) + \reg \norm{\pv}{0} + \regfunc(\pv)$
+            \end{blockthree}
+        };
+        \node<+-> at ($(problem.south)+(0,-0.2)$) (problem) {
+            \textbf{NP-hard}
+        };
+        \node<+-> [text width=.3\textwidth, anchor=north] at ($(problem.south)+(-4.1,-0.4)$) (mip) {
+            \begin{blockzero}{Generic approach}
+            \centering
+            \scriptsize
+            ~\\
+            \begin{itemize}[leftmargin=*,label=$\blacktriangleright$,nosep]
+                \item D. Bertsimas \hfill (2016)
+                \item S. Bourguignon \hfill (2017)
+                \item A. Atamtürk \hfill (2020)
+                \item D. Bertsimas \hfill (2021)
+                \item C. Kanzow \hfill (2022)
+            \end{itemize}
+            ~\\
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item MIP formulation
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item Off-the-shelf solvers
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item User friendly
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphtwo{
+                \begin{itemize}[leftmargin=*,label=\ding{55},nosep]
+                    \item Slow
+                \end{itemize}
+                }
+            }
+            \end{blockzero}
+        };
+        \node<+-> [text width=.3\textwidth, anchor=north] at ($(problem.south)+(-0.1,-0.4)$) (bnb) {
+            \begin{blockzero}{Tailored approach}
+            \centering
+            \scriptsize
+            ~\\
+            \begin{itemize}[leftmargin=*,label=$\blacktriangleright$,nosep]
+                \item R. Ben Mhenni \hfill (2021)
+                \item H. Hazimeh \hfill (2021)
+                \item G. Samain \hfill (2022)
+                \item A. Olama \hfill (2022)
+                \item A. Atamtürk \hfill (2022)
+            \end{itemize}
+            ~\\
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item BnB algorithm
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item Efficient bounding
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphtwo{
+                \begin{itemize}[leftmargin=*,label=\ding{55},nosep]
+                    \item Restrictions on $\datafunc$ and $\regfunc$
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphtwo{
+                \begin{itemize}[leftmargin=*,label=\ding{55},nosep]
+                    \item Inappropriate exploration
+                \end{itemize}
+                }
+            }
+            \end{blockzero}
+        };
+        \node<+-> [text width=.32\textwidth, anchor=north] at ($(problem.south)+(4,-0.4)$) (contrib) {
+            \begin{blockzero}{Contributions}
+            \centering
+            \scriptsize
+            ~\\
+            \begin{itemize}[leftmargin=*,label=$\blacktriangleright$,nosep]
+                \item This talk \hfill (2023)
+                \item Extended paper \hfill (202?)
+            \end{itemize}
+            \begin{itemize}[leftmargin=*,nosep]
+                \item 
+                \item 
+                \item 
+            \end{itemize}
+            ~\\
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item BnB algorithm
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item Efficient bounding
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep]
+                    \item Generalize w.r.t. $\datafunc$ and $\regfunc$
+                \end{itemize}
+                }
+            }
+            \onslide<+->{
+                \emphone{
+                \begin{itemize}[leftmargin=*,label=\ding{51},nosep] 
+                    \item Tailored exploration
+                \end{itemize}
+                }
+            }
+            \end{blockzero}
+        };
+    \end{tikzpicture}
+\end{frame}
+  

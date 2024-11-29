@@ -1,0 +1,57 @@
+\begin{frame}{L0-penalized problems}
+    \begin{tikzpicture}[remember picture,overlay,decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm}]
+        \onslide<+-> {
+            \draw [ultra thick,<->] ($(current page.north)+(-2.2,-0.32\textheight)$) -- ($(current page.north)+(2.2,-0.32\textheight)$) node (arrow) [midway] {};
+            \node at ($(arrow.north)+(0,0.1)$) {\textbf{Objectives}};
+        }
+        %
+        %
+        %
+        \node<+-> [text width=0.3\textwidth] at ($(current page.north)+(-4,-0.3\textheight)$) (obs) {
+        \begin{blockone}{}
+            \centering
+            \textbf{Minimize a loss}
+        \end{blockone}
+        };
+        %
+        %
+        %
+        \node<+->[text width=.3\textwidth] at ($(current page.north)+(4,-0.3\textheight)$) (dic) {
+        \begin{blocktwo}{}
+            \centering
+            \textbf{Sparse solution}
+        \end{blocktwo}
+        };
+        %
+        %
+        %
+        \node<+-> at ($(arrow.south)+(0,-0.6)$) (applications) {
+            \begin{varwidth}{\linewidth}
+                \centering
+                \scriptsize{Machine Learning} \\
+                \scriptsize{Signal processing} \\
+                \scriptsize{Network design} \\
+                \scriptsize{...}
+            \end{varwidth}
+        };
+        %
+        %
+        %
+        \node<+-> [text width=.45\textwidth] at ($(current page.north)+(0,-0.6\textheight)$) (problem) {
+            \begin{blockthree}{$\ell_0$-penalized problem}
+                \centering
+                $\min_{\pv} \ \datafunc(\dic\pv) + \reg \norm{\pv}{0} + \regfunc(\pv)$
+            \end{blockthree}
+        };
+    \end{tikzpicture}
+    \begin{textblock}{1}(0.45,0.11)
+        \begin{itemize}[nosep]
+            \item[%
+                \only<6->{$\datafunc(\dic\pv)$}%
+            ]<6->: loss
+            \item[$\norm{\pv}{0}$]<7-> : sparsity
+            \item[$\reg$]<8-> : trade-off
+            \item[$\regfunc(\pv)$]<9-> : modelling
+        \end{itemize}
+    \end{textblock}
+\end{frame}

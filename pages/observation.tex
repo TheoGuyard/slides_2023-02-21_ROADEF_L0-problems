@@ -1,0 +1,265 @@
+\begin{frame}{Structural bottleneck}
+    \setbeamercovered{
+        again covered={\opaqueness<1->{10}}
+    }
+    \begin{tikzpicture}[remember picture,overlay,decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm},domain=0:4]
+        \node<+-> at (0,0) {};
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(current page.north)+(-2,-0.25\textheight)$) (node0) {$\nodeSymbIter{0}$};
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node0.south)+(0.75,-1.25)$) (node1) {$\nodeSymbIter{1}$};
+            \draw [thick,->] (node0.south east) -- (node1.north) node (arrow01) [fill=white,draw=black,midway] {\scriptsize{$\pvi{1} \neq 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node at ($(node1.south)+(0,-0.125)$) (bullet1) {$\bullet$};
+            \draw [thick] (node1.south) -- ($(bullet1.south)+(0,0.2)$);
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node0.south)+(-0.75,-1.25)$) (node2) {$\nodeSymbIter{2}$};
+            \draw [thick,->] (node0.south west) -- (node2.north) node (arrow02) [fill=white,draw=black,midway] {\scriptsize{$\pvi{1} = 0$}};
+        }
+        %
+        %
+        %
+        \uncover<+-26> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node2.south)+(0.75,-1.25)$) (node3) {$\nodeSymbIter{3}$};
+            \draw [thick,->] (node2.south east) -- (node3.north) node (arrow23) [fill=white,draw=black,midway] {\scriptsize{$\pvi{2} \neq 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node at ($(node3.south)+(0,-0.125)$) (bullet3) {$\bullet$};
+            \draw [thick] (node3.south) -- ($(bullet3.south)+(0,0.2)$);
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node2.south)+(-0.75,-1.25)$) (node4) {$\nodeSymbIter{4}$};
+            \draw [thick,->] (node2.south west) -- (node4.north) node (arrow23) [fill=white,draw=black,midway] {\scriptsize{$\pvi{2} = 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node4.south)+(0.75,-1.25)$) (node5) {$\nodeSymbIter{5}$};
+            \draw [thick,->] (node4.south east) -- (node5.north) node (arrow35) [fill=white,draw=black,midway] {\scriptsize{$\pvi{3} \neq 0$}};
+        }
+        %
+        %
+        %
+        \onslide<+-26> {
+            \node at ($(node5.south)+(0,-0.125)$) (bullet5) {$\bullet$};
+            \draw [thick] (node5.south) -- ($(bullet5.south)+(0,0.2)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(node4.south)+(-0.75,-1.25)$) (node6) {$\nodeSymbIter{6}$};
+            \draw [thick,->] (node6.south west) -- ($(node6.south west)+(-0.1,-0.2)$);
+            \draw [thick,->] (node6.south east) -- ($(node6.south east)+(0.1,-0.2)$);
+        }
+        \onslide<11-26> {
+            \draw [thick,->] (node4.south west) -- (node6.north) node (arrow36) [fill=white,draw=black,midway] {\scriptsize{$\pvi{3} = 0$}};
+        }
+        %
+        %
+        %
+        \only<12-> {
+            \node [text width=0.15\textwidth] at ($(node5.south)+(0.25,-0.75)$) (goodbranch) {
+                \begin{blocktwo}{}
+                    \centering
+                    \scriptsize{Always pruned}
+                \end{blocktwo}
+            };
+        }
+        %
+        %
+        %
+        \only<13-> {
+            \node [text width=0.15\textwidth] at ($(node6.south)+(-0.25,-0.75)$) (goodbranch) {
+                \begin{blocktwo}{}
+                    \centering
+                    \scriptsize{No bound improvment}
+                \end{blocktwo}
+            };
+        }
+        %
+        %
+        %
+        \node<+-> at(0,0) {};
+        \node<+-> at (0,0) {};
+        \onslide<+-> {
+            \node [text width=0.5\textwidth] at ($(current page.north)+(3,-2.5)$) (waste) {
+                \small
+                \begin{blocksix}{}
+                    \centering
+                    \small
+                    \textbf{Waste of computational power !}
+                \end{blocksix}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=0.5\textwidth] at ($(waste.south)+(0,-0.75)$) (question) {
+                \small
+                \begin{blocksix}{}
+                    \centering
+                    \small
+                    \textbf{How to avoid such situations ?}
+                \end{blocksix}
+            };
+            \draw [ultra thick,->] ($(waste.south)+(0,0)$) -- ($(question.north)+(0,-0.3)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=0.5\textwidth] at ($(question.south)+(0,-0.75)$) (answer) {
+                \begin{blocksix}{}
+                    \centering
+                    \small
+                    \textbf{Leverage duality link between nodes}
+                \end{blocksix}
+            };
+            \draw [ultra thick,->] ($(question.south)+(0,0)$) -- ($(answer.north)+(0,-0.3)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(answer.south)+(-1.5,-0.5)$) (nodek) {$\nodeSymbIter{0}$};
+            \node [circle,draw=black,thick,top color = white,
+            bottom color = blue!30,] at ($(answer.south)+(1.5,-0.5)$) (nodekp) {$\nodeSymbIter{1}$};
+            \draw [thick,->] (nodek.east) -- (nodekp.west);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nodek.south)+(0,-0.25)$) (nodeksub) {\scriptsize{Subproblem}};
+            \node at ($(nodekp.south)+(0,-0.25)$) (nodekpsub) {\scriptsize{Subproblem}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nodeksub.south)+(0,-0.25)$) (nodekrelax) {\scriptsize{Relaxation}};
+            \node at ($(nodekpsub.south)+(0,-0.25)$) (nodekprelax) {\scriptsize{Relaxation}};
+            \draw [thick,->] ($(nodekpsub.south)+(0,0.05)$) -- ($(nodekprelax.north)+(0,-0.05)$);
+            \draw [thick,->] ($(nodeksub.south)+(0,0.05)$) -- ($(nodekrelax.north)+(0,-0.05)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nodekrelax.south)+(0,-0.25)$) (nodekdual) {\scriptsize{\emphtwo{Dual}}};
+            \draw [thick,->,color=mLightBrown] ($(nodekrelax.south)+(0,0.05)$) -- ($(nodekdual.north)+(0,-0.05)$);
+            \node at ($(nodekprelax.south)+(0,-0.25)$) (nodekpdual) {\scriptsize{\emphtwo{Dual}}};
+            \draw [thick,->,color=mLightBrown] ($(nodekprelax.south)+(0,0.05)$) -- ($(nodekpdual.north)+(0,-0.05)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \draw [thick,<->,color=mLightBrown,dashed] ($(nodekdual.east)+(0.05,0)$) -- ($(nodekpdual.west)+(-0.05,0)$) node [midway] (link) {};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nodekdual.south)+(0,-0.15)$) (dual1) {\scriptsize{\emphtwo{$\max_{\dv} \dfunc(\dv)$}}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(nodekpdual.south)+(0,-0.15)$) (dual1) {\scriptsize{\emphtwo{$\max_{\dv} \dfunc(\dv) + r(u)$}}};
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node at ($(dual1.south)+(-0.5,-0.5)$) (complexity) {\scriptsize\emphtwo{$\mathcal{O}(1)$}};
+            \draw[mLightBrown,thick,->] (complexity.east) .. controls ($(dual1.south)+(0.6,-0.45)$) .. ($(dual1.south)+(0.75,0)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \draw[mLightBrown,ultra thick,->] (node0.west) .. controls ($(node0.west)+(-2.2,-0.25)$) .. ($(node0.north west)+(-2.5,-1.75)$);
+            \node[draw=mLightBrown,thick,top color = white,bottom color = orange!25,font=\scriptsize,align=center,ultra thick] at ($(node0.north west)+(-2.5,-1.75)$) (fix1) {Fix $\pvi{1} = 0$ \\ Fix $\pvi{2} = 0$ \\ Fix $\pvi{3} = 0$ };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \draw[mLightBrown,ultra thick,->] (fix1.south) .. controls ($(fix1.south)+(0,-2)$) .. (node6.north west);
+        }
+        %
+        %
+        %
+        \node<+-> at (0,0) {};
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=0.25\textwidth] at ($(current page.center)+(-2.2,1)$) (effect1) {
+                \small
+                \begin{blockone}{}
+                    \centering
+                    \scriptsize
+                    \textbf{Avoid useless nodes}
+                \end{blockone}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=0.25\textwidth] at ($(effect1.south)+(0,-0.3)$) (effect2) {
+                \small
+                \begin{blockone}{}
+                    \centering
+                    \scriptsize
+                    \textbf{Save computations}
+                \end{blockone}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=0.25\textwidth] at ($(effect2.south)+(0,-0.3)$) (effect3) {
+                \small
+                \begin{blockone}{}
+                    \centering
+                    \scriptsize
+                    \textbf{Reduce solving time}
+                \end{blockone}
+            };
+        }
+    \end{tikzpicture}
+\end{frame}

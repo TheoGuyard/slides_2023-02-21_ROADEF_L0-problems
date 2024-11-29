@@ -1,0 +1,43 @@
+\begin{frame}[noframenumbering]{Node problems}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node [circle,draw=black,thick,top color = white,
+        bottom color = blue!30,] at ($(current page.north)+(-4,-0.2\textheight)$) (node) {$\nodeSymbIter{k}$};
+        \node[align=left] at ($(node.south)+(0,-0.8)$) (node-fixing) {
+            \small{$\setzero = \kset{\idxentry}{\pvi{\idxentry} = 0}$} \\ 
+            \small{$\setone = \kset{\idxentry}{\pvi{\idxentry} \neq 0}$} \\ 
+            \small{$\setnone = \kset{\idxentry}{\pvi{\idxentry} \ \text{free}}$}
+        };
+        \node [text width=.7\textwidth] at ($(current page.north)+(1.6,-0.275\textheight)$) (subproblem) {
+            \begin{blockthree}{Subproblem}
+                \small
+                $$
+                \left\{
+                \begin{array}{rl}
+                    \min_{\pv} & \ \datafunc(\dic\pv) + \reg \norm{\pv}{0} + \regfunc(\pv) \\
+                    \text{s.t.} & \ \subzero{\pv} = \0, \ \subone{\pv} \neq \0
+                \end{array}
+                \right.
+                $$
+                NP-hard unless $\setnone = \emptyset$.
+            \end{blockthree}
+        };
+        \node [text width=\textwidth,anchor=north] at ($(current page.north)+(0,-0.45\textheight)$) (relaxation) {
+            \begin{blocktwo}{Relaxation}
+                \small
+                $$
+                \textstyle\min_{\pv} \big\{ \datafunc(\dic\pv) + \relaxregfunc(\pv) \big\}
+                $$
+                with $\relaxregfunc(\pv)$ being the convex envelope of  $\reg \norm{\pv}{0} + \regfunc(\pv) + \Icvx(\subzero{\pv}=\0,\subone{\pv}\neq\0)$.
+            \end{blocktwo}
+        };
+        \node [text width=\textwidth,anchor=north] at ($(relaxation.south)+(0,-0.01\textheight)$) (dual) {
+            \begin{blockone}{Dual}
+                \small
+                $$
+                \textstyle\max_{\dv} \big\{ -\conj{\datafunc}(-\dv) - \conj{\relaxregfunc}(\transp{\dic}\dv) \big\}
+                $$
+                with $\conj{\relaxregfunc}(\transp{\dic}\dv)= \textstyle\sum_{\idxentry \in \setnone} \pospart{\conj{\regfunc}(\transp{\atom{\idxentry}}\dv) - 1} + \textstyle\sum_{\idxentry \in \setone} (\conj{\regfunc}(\transp{\atom{\idxentry}}\dv) - 1)$
+            \end{blockone}
+        };
+    \end{tikzpicture}
+\end{frame}

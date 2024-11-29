@@ -1,0 +1,55 @@
+\begin{frame}{Numerical illustrations}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node<+-> [text width=0.8\textwidth] at ($(current page.north)+(0,-0.3\textwidth)$) (highlights) {
+            \begin{block}{Highlights}
+                \begin{itemize}[label=$\bullet$]
+                    \item<+-> Gains up to $\times10^5$ against MIP solvers 
+                    \item<+-> Gains up to $\times10^2$ against tailored BnB 
+                    \item<+-> Scales up to dimension $\approx 10^5$ in minutes
+                \end{itemize}
+            \end{block}
+        };
+        \onslide<+-> {
+            \draw[ultra thick] (0.22\textwidth,-0.23\textheight) rectangle (0.78\textwidth,-0.05\textheight);
+            \node [text width=0.7\textwidth] at ($(current page.north)+(0,-0.55\textwidth)$) (repo) {
+                \begin{textblock}{1}(0.1,-0.025)
+                    \LARGE{TheoGuyard/\bf{El0ps.jl}}
+                \end{textblock}
+                \begin{textblock}{1}(0.11,0.055)
+                    \scriptsize{\textcolor{gray}{An Exact L0-penalized Problem Solver.}}
+                \end{textblock}
+                \begin{textblock}{1}(0.55,0.075)
+                    \includegraphics[width=0.04\textwidth]{imgs/github.png}
+                \end{textblock}
+            };
+        }
+        \onslide<+-> {
+            \node [text width=0.3\textwidth, align=center] at ($(current page.north)+(-4,-0.47\textwidth)$) (efficient) {
+                \small{Efficient BnB}
+            };
+            \draw[thick,->] (efficient.south) .. controls ($(efficient.south)+(0,-0.5)$) .. ($(efficient.south)+(0.75,-1)$);
+            \node [text width=0.3\textwidth, align=center] at ($(efficient.south)+(-0.2,-0.7)$) (efficientimg) {
+                \includegraphics[width=15pt]{imgs/strong.png}
+            };
+        }
+        \onslide<+-> {
+            \node [text width=0.3\textwidth, align=center] at ($(current page.north)+(4,-0.47\textwidth)$) (generic) {
+                \small{Generic framework}
+            };
+            \draw[thick,->] (generic.south) .. controls ($(generic.south)+(0,-0.5)$) .. ($(generic.south)+(-0.75,-1)$);
+            \node [text width=0.3\textwidth, align=center,xscale=-1] at ($(generic.south)+(0.25,-0.75)$) (genericimg) {
+                \includegraphics[width=15pt]{imgs/strong.png}
+            };
+        }
+        \onslide<+-> {
+            \node [align=center] at ($(current page.north)+(0,-0.8\textwidth)$) (ggeneric) {
+                \small{Works with any $\datafunc$ and $\regfunc$} \\ 
+                \small{under mild assumptions !}
+            };
+            \draw[thick,->] (ggeneric.north) .. controls ($(ggeneric.north)+(0,0.5)$) .. ($(ggeneric.north)+(0,0.8)$);
+            \node [text width=0.3\textwidth, align=center] at ($(ggeneric.north)+(0.6,0.4)$) (ggenericimg) {
+                \includegraphics[width=15pt]{imgs/party.png}
+            };
+        }
+    \end{tikzpicture}
+\end{frame}

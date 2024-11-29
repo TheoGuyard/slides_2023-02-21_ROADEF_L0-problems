@@ -1,0 +1,76 @@
+\begin{frame}{Numerical illustrations}
+  \begin{tikzpicture}[remember picture,overlay]
+    \onslide {
+      \node [text width=.45\textwidth] at ($(current page.north)+(0,-0.175\textheight)$) (problem) {
+      \begin{blockthree}{}
+          \centering
+          \small
+          $\min_{\pv} \ \datafunc(\dic\pv) + \reg \norm{\pv}{0} + \regfunc(\pv)$
+      \end{blockthree}
+      };
+    }
+    %
+    %
+    %
+    \node<+-> [text width=.7\textwidth] at ($(current page.north)+(2,-0.325\textheight)$) (data) {
+      \begin{itemize}[nosep]
+        \item<+->[\textbf{Dataset}] : Sparse linear regression
+        \item<+->[\textbf{F(Ax)}] : Mean squared error
+        \item<+->[\textbf{G(x)}] : Constraint $\boldsymbol{l} \leq \boldsymbol{x} \leq \boldsymbol{u}$
+      \end{itemize}
+    };
+    \onslide<+-> {
+      \begin{scope}[shift={(1,-2.5)}]
+        \begin{axis}[
+          mlineplot,
+          width=0.8\textwidth,
+          height=5cm,
+          xmode=log,
+          log basis x={10},
+          ymax = 110,
+          yticklabel={\pgfmathprintnumber\tick\,\%},
+          xlabel = Time (seconds),
+          ylabel = Instances solved,
+          legend style={at={(1.03,0.5)},anchor=west}
+        ]
+          
+          \addplot[ultra thick,color=RoyalBlue4,visible on=<6->] %
+          table[x=times,y=DirectSolver-scip,col sep=comma]{data/synthetic_optimize_LeastSquares_BigmL2norm_10_250_500_0.1_32.0.csv};
+          \only<6-> {
+            \addlegendentry{SCIP};
+          }
+
+          \addplot[ultra thick,color=SteelBlue2,visible on=<6->] %
+          table[x=times,y=DirectSolver-cplex,col sep=comma]{data/synthetic_optimize_LeastSquares_BigmL2norm_10_250_500_0.1_32.0.csv};
+          \only<6-> {
+            \addlegendentry{CPLEX};
+          }
+
+          \addplot[ultra thick,color=SkyBlue1,visible on=<6->] %
+          table[x=times,y=DirectSolver-mosek,col sep=comma]{data/synthetic_optimize_LeastSquares_BigmL2norm_10_250_500_0.1_32.0.csv};
+          \only<6-> {
+            \addlegendentry{MOSEK};
+          }
+
+          \addplot[ultra thick,color=LightSalmon1,visible on=<7->] %
+          table[x=times,y=BourguignonSolver,col sep=comma]{data/synthetic_optimize_LeastSquares_BigmL2norm_10_250_500_0.1_32.0.csv};
+          \only<7-> {
+            \addlegendentry{Bourguignon \hfill(2022)};
+          }
+
+          \addplot[ultra thick,color=LightPink3,visible on=<7->] %
+          table[x=times,y=HazimehSolver,col sep=comma]{data/synthetic_optimize_LeastSquares_BigmL2norm_10_250_500_0.1_32.0.csv};
+          \only<7-> {
+            \addlegendentry{Hazimeh (2022)};
+          }
+
+          \addplot[ultra thick,color=Brown4,visible on=<8->] %
+          table[x=times,y=BnbSolver-accel,col sep=comma]{data/synthetic_optimize_LeastSquares_BigmL2norm_10_250_500_0.1_32.0.csv};
+          \only<8-> {
+            \addlegendentry{\textbf{Proposed}};
+          }
+        \end{axis}
+      \end{scope}
+    }
+  \end{tikzpicture}
+\end{frame}
